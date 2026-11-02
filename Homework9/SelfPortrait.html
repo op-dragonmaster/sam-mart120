@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <title>
+       Self Portrait
+   </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+    <script>
+       var x1 = 240;
+       var x2 = 160;
+       var x3 = 200;
+       var y1 = 200;
+       var y2 = 200;
+       var y3 = 200;
+       var movx1;
+       var movx2;
+       var movx3;
+       var movy1;
+       var movy2;
+       var movx3;
+       var textsize = 22;
+       var count = 0;
+
+       function setup() {
+          createCanvas(400, 400);
+          var movx1 = Math.floor(Math.random() * 10) + 1;
+          var movx2 = Math.floor(Math.random() * 10) + 1;
+          var movx3 = Math.floor(Math.random() * 10) + 1;
+          var movy1 = Math.floor(Math.random() * 10) + 1;
+          var movy2 = Math.floor(Math.random() * 10) + 1;
+          var movx3 = Math.floor(Math.random() * 10) + 1;
+       }
+
+       function draw() {
+          background(220);
+          strokeWeight(10);
+          textSize(textsize);
+	  text("Self Portrait", 10,50);
+          for {
+             if (count == 5) {
+                textsize = 22;
+                count = 0;
+             else {
+                textsize *= 1.25;
+                count += 1
+             }
+          text("Sam Bullard", 10,375);
+          fill(245, 232, 206);
+          rect(175, 300, 50, 1250);
+          circle(x3, y3, 200);
+          if (x3 >= 400 || x3 <= 0) {
+             movx3 *= -1;
+          }
+          if (y3 >= 400 || y3 <= 0) {
+             movy3 *= -1;
+          }
+          fill(87, 59, 4);
+          ellipse(200, 140, 200, 80);
+          fill(78, 207, 230);
+          circle(240, y1, 50);
+          if (y1 >= 400 || y1 <= 0) {
+             movy1 *= -1;
+          }
+          circle(160, y2, 50);
+          if (y2 >= 400 || y2 <= 0) {
+             movy2 *= -1;
+          }
+          fill(0);
+          line(215, 200, 185, 200);
+          point(x1,200);
+          if (x1 >= 400 || x1 <= 0) {
+             movx1 *= -1;
+          }
+          point(x2,200);
+          if (x2 >= 400 || x2 <= 0){
+             movx1 *= -1;
+          }
+          fill(250, 78, 62);
+          triangle(250, 250, 200, 300, 150, 250);
+         
+          x1 += movx1;
+          x2 += movx2;
+          x3 += movx3;
+          y1 += movy1;
+          y2 += movy2;
+          y3 += movy3;
+       }
+    </script>
+  </head>
+  <body>
+     
+  </body>
+</html>
