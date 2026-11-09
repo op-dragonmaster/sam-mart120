@@ -35,14 +35,13 @@
           strokeWeight(10);
           textSize(textsize);
 	  text("Self Portrait", 10,50);
-          for {
-             if (count == 5) {
-                textsize = 22;
-                count = 0;
-             else {
-                textsize *= 1.25;
-                count += 1
-             }
+          if (count == 5) {
+             textsize = 22;
+             count = 0;
+          else {
+             textsize *= 1.25;
+             count += 1
+          }
           text("Sam Bullard", 10,375);
           fill(245, 232, 206);
           rect(175, 300, 50, 1250);
