@@ -1,0 +1,127 @@
+<html>
+​
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js">
+    var x = 400;
+    var y = 50;
+    var x2 = 400;
+    var x3 = 400;
+    var y2 = 200;
+    var y3 = 400;
+    var x2spd = 0
+    var x3spd = 0;
+    var y2spd = 0;
+    var y3spd = 0;
+    var mousex = 0;
+    var mousey = 0;
+
+    function setup() {
+      createCanvas(800, 600);
+      x2spd = floor(random() * 10) + 1;
+      y2spd = floor(random() * 10) + 1;
+      x3spd = floor(random() * 10) + 1;
+      y3spd = floor(random() * 10) + 1;
+    }
+
+    function makePlayer(){
+      fill(200, 0, 0);
+      circle(x, y, 50);    
+    }
+
+    function playerMove(){
+      if (keyIsDown('s')) {
+          y += 5;
+      } 
+      else if (keyIsDown('w')) {
+          y -= 5;
+      }
+      else if (keyIsDown('d')) {
+          x += 5;
+      } 
+      else if (keyIsDown('a')) {
+          x -= 5;
+      }
+    }
+
+    function makeCircle(r, g, b, xpos, ypos, size){
+      fill(r, g, b)
+      circle(xpos, ypos, size)
+    }
+
+    function move(){
+      x2 += x2spd;
+      y2 += y2spd;
+      x3 += x3spd;
+      y3 += y3spd;
+      if (x <= 0 || x >= 800) {
+        x = 400;
+      }
+      if (y <= 0 || y >= 600) {
+        y = 50;
+      }
+      if (x2 <= 0) {
+        x2 = 800;
+      }
+      else if (x2 >= 800) {
+        x2= 0;
+      }
+      if (y2 <= 0) {
+        y2 = 600;
+      }
+      else if (y2 >= 600) {
+        y2 = 0;
+      }
+      if (x3 <= 0) {
+        x3 = 800;
+      }
+      else if (x3 >= 800) {
+        x3= 0;
+      }
+      if (y3 <= 0) {
+        y3 = 600;
+      }
+      else if (y3 >= 600) {
+        y3 = 0
+      }
+    }
+
+    function mouseCircle(){
+      fill(200, 200, 0)
+      circle(mousex, mousey, 50)
+    }
+
+    function win(){
+      fill(0, 200, 200)
+      rect(0, 500, 800, 600)
+      if(y >= 500) {
+        fill(200, 0, 200)
+        textSize(50)
+        text ("win :D", 400, 100)
+      }
+    }
+
+    function draw() {
+
+      background(0);
+      makePlayer();
+      playerMove();
+      makeCircle(0, 200, 0, x2, y2, 75);
+      makeCircle(0, 0, 200, x3, y3, 100);
+      move();
+      mouseCircle();
+      win();
+      }
+
+    function mouseClicked() {
+      mousex = mouseX
+      mousey = mouseY
+    }
+
+  </script>
+​
+</head>
+​
+<body>
+</body>
+​
+</html>
