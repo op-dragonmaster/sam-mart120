@@ -1,0 +1,123 @@
+<html>
+​
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js">
+    var playerx = 400;
+    var playery = 50;
+    var xs = [];
+    var ys = [];
+    var xspd = [];
+    var yspd = [];
+    var mousex = 0;
+    var mousey = 0;
+    var sizes = [];
+    var reds = [];
+    var greens = [];
+    var blues = [];
+
+    function setup() {
+      createCanvas(800, 600);
+      for (i = 0; i < 5; i++){
+        xs[i] = floor(random() * 800) + 1;
+        ys[i] = floor(random() * 600) + 1;
+        sizes[i] = floor(random() * 100) + 1;
+        reds[i] = floor(random() * 200) + 1;
+        greens[i] = floor(random() * 200) + 1;
+        blues[i] = floor(random() * 200) + 1;
+        xspd[i] = floor(random() * 10) + 1;
+        yspd[i] = floor(random() * 10) + 1;
+      }
+    }
+
+    function makePlayer(){
+      fill(200, 0, 0);
+      circle(playerx, playery, 50);    
+    }
+
+    function playerMove(){
+      if (keyIsDown('s')) {
+          playery += 5;
+      } 
+      else if (keyIsDown('w')) {
+          playery -= 5;
+      }
+      else if (keyIsDown('d')) {
+          playerx += 5;
+      } 
+      else if (keyIsDown('a')) {
+          playerx -= 5;
+      }
+    }
+
+    function makeCircle(r, g, b, xpos, ypos, bigness){
+      fill(r, g, b)
+      circle(xpos, ypos, bigness)
+    }
+
+    function move(){
+      for (i = 0; i < xs.length; i++){
+        xs[i] += xspd[i];
+        ys[i] += yspd[i];
+      }
+      if (playerx <= 0 || playerx >= 800) {
+        playerx = 400;
+      }
+      if (playery <= 0 || playery >= 600) {
+        playery = 50;
+      }
+      for (i = 0; i < xs.length; i++){      
+        if (xs[i] <= 0) {
+          xs[i] = 800;
+        }
+        else if (xs[i] >= 800) {
+          xs[i] = 0;
+        }
+        if (ys[i] <= 0) {
+          ys[i] = 600;
+        }
+        else if (ys[i] >= 600) {
+          ys[i] = 0;
+        }
+      }
+    }
+
+    function mouseCircle(){
+      fill(200, 200, 0)
+      circle(mousex, mousey, 50)
+    }
+
+    function win(){
+      fill(0, 200, 200)
+      rect(0, 500, 800, 600)
+      if(playery >= 500) {
+        fill(200, 0, 200)
+        textSize(50)
+        text ("win :D", 400, 100)
+      }
+    }
+
+    function draw() {
+
+      background(0);
+      makePlayer();
+      playerMove();
+      for (i = 0; i < xs.length; i++){
+        makeCircle(reds[i], greens[i], blues[i], xs[i], ys[i], sizes[i]);
+      }
+      move();
+      mouseCircle();
+      win();
+      }
+
+    function mouseClicked() {
+      mousex = mouseX
+      mousey = mouseY
+    }
+  </script>
+​
+</head>
+​
+<body>
+</body>
+​
+</html>
